@@ -1,0 +1,9 @@
+WITH wallets AS (
+   SELECT array_to_string(inputs.addresses, ",") AS address
+   FROM `bigquery-public-data.crypto_bitcoin.inputs` AS inputs
+   UNION ALL
+   SELECT array_to_string(outputs.addresses, ",") AS address
+   FROM `bigquery-public-data.crypto_bitcoin.outputs` AS outputs
+)
+SELECT COUNT(DISTINCT address) AS total_wallets
+FROM wallets;

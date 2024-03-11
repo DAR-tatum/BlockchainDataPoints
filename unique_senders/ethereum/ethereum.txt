@@ -1,0 +1,2 @@
+SELECT COUNT(DISTINCT from_address) AS unique_senders
+FROM `bigquery-public-data.crypto_ethereum.transactions`;

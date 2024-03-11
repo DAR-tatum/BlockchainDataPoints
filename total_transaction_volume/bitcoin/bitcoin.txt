@@ -1,0 +1,1 @@
+SELECT SUM(output_value) as total_transaction_volume FROM `bigquery-public-data.crypto_bitcoin.transactions`;

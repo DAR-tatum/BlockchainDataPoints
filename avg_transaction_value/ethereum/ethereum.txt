@@ -1,0 +1,2 @@
+SELECT AVG(value) AS average_transaction_value
+FROM `bigquery-public-data.crypto_ethereum.transactions`;

@@ -1,0 +1,2 @@
+SELECT SUM(value) AS total_transaction_volume
+FROM `bigquery-public-data.crypto_ethereum.transactions`;

@@ -1,0 +1,2 @@
+SELECT SUM(receipt_gas_used * gas_price) AS total_gas_fee
+FROM `bigquery-public-data.crypto_ethereum.transactions`;

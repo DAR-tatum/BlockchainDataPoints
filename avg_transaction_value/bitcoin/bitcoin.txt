@@ -1,0 +1,1 @@
+SELECT AVG(output_value) as average_transaction_value FROM `bigquery-public-data.crypto_bitcoin.transactions`;

@@ -1,0 +1,1 @@
+SELECT SUM(fee) as total_gas_fee FROM `bigquery-public-data.crypto_bitcoin.transactions`;

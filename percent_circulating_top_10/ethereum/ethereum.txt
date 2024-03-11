@@ -1,0 +1,10 @@
+SELECT
+ SUM(eth_balance) / (
+   SELECT SUM(eth_balance) FROM `bigquery-public-data.crypto_ethereum.balances`
+ ) AS top_10_holdings_percent
+FROM (
+ SELECT address, eth_balance
+ FROM `bigquery-public-data.crypto_ethereum.balances`
+ ORDER BY eth_balance DESC
+ LIMIT 10
+);

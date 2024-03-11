@@ -1,0 +1,6 @@
+WITH recievers AS (
+   SELECT array_to_string(outputs.addresses, ",") AS address
+   FROM `bigquery-public-data.crypto_bitcoin.inputs` AS outputs
+)
+SELECT COUNT(DISTINCT address) AS unique_recievers
+FROM recievers;

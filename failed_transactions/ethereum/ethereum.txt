@@ -1,0 +1,8 @@
+SELECT 
+  COUNT(*) AS failed_transaction_count,
+  from_address AS sender,
+  to_address AS receiver
+FROM `bigquery-public-data.crypto_ethereum.transactions`
+WHERE receipt_status = 0
+GROUP BY sender, receiver
+ORDER BY failed_transaction_count DESC;

@@ -1,0 +1,4 @@
+SELECT address, eth_balance as balance
+FROM `bigquery-public-data.crypto_ethereum.balances`
+ORDER BY balance DESC
+LIMIT 10;
