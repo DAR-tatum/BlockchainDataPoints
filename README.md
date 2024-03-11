@@ -1,4 +1,4 @@
-Queries and results for BigQuery Crypto datasets
+# Queries and results for BigQuery Crypto datasets
 
 
-Bitcoin, Bitcoin cash, Dash, Dogecoin, Litecoin and ZCash all follow the same schema
+Bitcoin, Bitcoin Cash, Dash, Dogecoin, Litecoin, and ZCash all follow the same schema
