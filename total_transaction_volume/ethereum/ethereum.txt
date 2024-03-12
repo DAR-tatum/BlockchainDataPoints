@@ -1,2 +1,8 @@
-SELECT SUM(value) AS total_transaction_volume
-FROM `bigquery-public-data.crypto_ethereum.transactions`;
+SELECT 
+   EXTRACT(YEAR FROM block_timestamp) AS year,
+   EXTRACT(MONTH FROM block_timestamp) AS month,
+   EXTRACT(DAY FROM block_timestamp) AS day,
+   SUM(value) AS total_transaction_volume
+FROM `bigquery-public-data.crypto_ethereum.transactions`
+GROUP BY year, month, day
+ORDER BY year DESC, month DESC, day DESC;

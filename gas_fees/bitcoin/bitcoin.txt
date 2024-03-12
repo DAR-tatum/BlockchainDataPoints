@@ -1,1 +1,8 @@
-SELECT SUM(fee) as total_gas_fee FROM `bigquery-public-data.crypto_bitcoin.transactions`;
+SELECT 
+EXTRACT(YEAR FROM block_timestamp) AS year,
+EXTRACT(MONTH FROM block_timestamp) AS month,
+EXTRACT(DAY FROM block_timestamp) AS day,
+SUM(fee) as total_gas_fee
+FROM `bigquery-public-data.crypto_bitcoin.transactions`
+GROUP BY year, month, day
+ORDER BY year DESC, month DESC, day DESC;

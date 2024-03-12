@@ -1,2 +1,7 @@
-SELECT COUNT(DISTINCT from_address) AS unique_senders
-FROM `bigquery-public-data.crypto_ethereum.transactions`;
+SELECT 
+   EXTRACT(YEAR FROM block_timestamp) AS year,
+   EXTRACT(MONTH FROM block_timestamp) AS month,
+   COUNT(DISTINCT from_address) AS unique_senders
+FROM `bigquery-public-data.crypto_ethereum.transactions`
+GROUP BY year, month
+ORDER BY year DESC, month DESC;

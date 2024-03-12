@@ -1,1 +1,16 @@
-SELECT AVG(output_value) as average_transaction_value FROM `bigquery-public-data.crypto_bitcoin.transactions`;
+
+SELECT 
+block_timestamp_month,
+AVG(output_value) as average_transaction_value
+FROM `bigquery-public-data.crypto_bitcoin.transactions`
+GROUP BY block_timestamp_month
+ORDER BY block_timestamp_month DESC;
+
+
+-- SELECT 
+-- EXTRACT(YEAR FROM block_timestamp) AS year,
+-- EXTRACT(MONTH FROM block_timestamp) AS month,
+-- EXTRACT(DAY FROM block_timestamp) AS day,
+-- AVG(output_value) as average_transaction_value FROM `bigquery-public-data.crypto_bitcoin.transactions`
+-- GROUP BY year, month, day
+-- ORDER BY year DESC, month DESC, day DESC;
