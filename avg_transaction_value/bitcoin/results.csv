@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-average_transaction_value
-880819621.235843035
-=======
 date	average_transaction_value
 2024-03-12	402099341.559096216
 2024-03-11	344564453.068833133
@@ -5546,4 +5542,3 @@ date	average_transaction_value
 2009-01-10	5000000000
 2009-01-09	5000000000
 2009-01-03	5000000000
->>>>>>> Stashed changes
