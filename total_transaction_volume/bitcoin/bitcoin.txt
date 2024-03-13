@@ -1,6 +1,1 @@
-SELECT
-   FORMAT_TIMESTAMP('%Y-%m-%d', block_timestamp) AS date,
-   SUM(output_value) as total_transaction_volume 
-FROM `bigquery-public-data.crypto_bitcoin.transactions`
-GROUP BY date
-ORDER BY date DESC;
+SELECT SUM(output_value) as total_transaction_volume FROM `bigquery-public-data.crypto_bitcoin.transactions`;

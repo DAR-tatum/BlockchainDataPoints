@@ -1,1 +1,14 @@
--- TODO
+WITH wallet_balances AS (
+  SELECT address, SUM(value) AS balance
+  FROM (
+    SELECT UNNEST(inputs.addresses) AS address, -value
+    FROM `bigquery-public-data.crypto_bitcoin.transactions`
+    UNION ALL
+    SELECT UNNEST(outputs.addresses) AS address, value
+    FROM `bigquery-public-data.crypto_bitcoin.transactions`
+  ) AS all_transactions
+  GROUP BY address
+)
+SELECT COUNT(*) AS non_zero_wallets
+FROM wallet_balances
+WHERE balance > 0;

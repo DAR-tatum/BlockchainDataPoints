@@ -1,11 +1,1 @@
-<<<<<<< Updated upstream
 SELECT AVG(output_value) as average_transaction_value FROM `bigquery-public-data.crypto_bitcoin.transactions`;
-=======
-SELECT 
-   FORMAT_TIMESTAMP('%Y-%m-%d', block_timestamp) AS date,
-   AVG(output_value) as average_transaction_value
-FROM `bigquery-public-data.crypto_bitcoin.transactions`
-GROUP BY date
-ORDER BY date DESC;
-
->>>>>>> Stashed changes
