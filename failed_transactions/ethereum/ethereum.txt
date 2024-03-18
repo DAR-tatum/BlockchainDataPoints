@@ -1,13 +1,4 @@
 SELECT 
-<<<<<<< Updated upstream
-  COUNT(*) AS failed_transaction_count,
-  from_address AS sender,
-  to_address AS receiver
-FROM `bigquery-public-data.crypto_ethereum.transactions`
-WHERE receipt_status = 0
-GROUP BY sender, receiver
-ORDER BY failed_transaction_count DESC;
-=======
    FORMAT_TIMESTAMP('%Y-%m-%d', block_timestamp) AS date,
    COUNT(*) AS failed_transaction_count,
    from_address AS sender,
@@ -16,4 +7,3 @@ FROM `bigquery-public-data.crypto_ethereum.transactions`
 WHERE receipt_status = 0
 GROUP BY date, sender, receiver
 ORDER BY date DESC;
->>>>>>> Stashed changes
