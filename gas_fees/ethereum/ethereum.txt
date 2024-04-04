@@ -1,11 +1,6 @@
-<<<<<<< Updated upstream
-SELECT SUM(receipt_gas_used * gas_price) AS total_gas_fee
-FROM `bigquery-public-data.crypto_ethereum.transactions`;
-=======
 SELECT 
    FORMAT_TIMESTAMP('%Y-%m-%d', block_timestamp) AS date,
-   SUM(CAST(receipt_gas_used AS FLOAT64) * CAST(gas_price AS FLOAT64)) as total_gas_fee
+   ROUND((SUM(CAST(receipt_gas_used AS FLOAT64) * CAST(gas_price AS FLOAT64))/1000000000000000000), 6) as total_gas_fee
 FROM `bigquery-public-data.crypto_ethereum.transactions`
 GROUP BY date
 ORDER BY date DESC;
->>>>>>> Stashed changes

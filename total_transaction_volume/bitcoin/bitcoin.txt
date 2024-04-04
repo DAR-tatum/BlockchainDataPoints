@@ -1,6 +1,6 @@
 SELECT
    FORMAT_TIMESTAMP('%Y-%m-%d', block_timestamp) AS date,
-   SUM(output_value) as total_transaction_volume 
+   ROUND((SUM(output_value)/100000000), 6) as total_transaction_volume 
 FROM `bigquery-public-data.crypto_bitcoin.transactions`
 GROUP BY date
 ORDER BY date DESC;

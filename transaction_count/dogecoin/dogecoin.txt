@@ -1,0 +1,6 @@
+SELECT
+   FORMAT_TIMESTAMP('%Y-%m-%d', block_timestamp) AS date,
+   COUNT(*) as num_transactions
+FROM `bigquery-public-data.crypto_dogecoin.transactions`
+GROUP BY date
+ORDER BY date DESC;

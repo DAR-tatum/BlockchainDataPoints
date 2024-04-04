@@ -1,0 +1,6 @@
+SELECT 
+   FORMAT_TIMESTAMP('%Y-%m-%d', block_timestamp) AS date,
+   (SUM(value)/1000000000000000000) AS total_transaction_volume
+FROM `bigquery-public-data.crypto_polygon.transactions`
+GROUP BY date
+ORDER BY date DESC;

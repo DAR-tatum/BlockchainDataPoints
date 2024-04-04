@@ -39,7 +39,7 @@ for dirpath, dirnames, filenames in os.walk('./'):
                 data[dir] = pd.merge(data[dir], df, on='date', how='outer')
 
 
-with pd.ExcelWriter(outdir) as writer:
+with pd.ExcelWriter(outdir, engine='xlsxwriter') as writer:
     for dir, df in data.items():
         sheet_name = dir.replace('/', '_')
         
@@ -47,3 +47,11 @@ with pd.ExcelWriter(outdir) as writer:
             sheet_name = sheet_name[:30]
             
         df.to_excel(writer, sheet_name=sheet_name, index=False)
+        
+        # adjusts the columns to fit content
+        for column in df:
+            column_length = max(df[column].astype(str).map(len).max(), len(column))
+            col_idx = df.columns.get_loc(column)
+            writer.sheets[sheet_name].set_column(col_idx, col_idx, column_length)
+                
+    #writer.save()

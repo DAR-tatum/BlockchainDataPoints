@@ -18,9 +18,5 @@ total_balance AS (
    SELECT SUM(value) AS total
    FROM wallet_balances
 )
-SELECT address, 
-       balance,
-       ROUND(balance / (SELECT total FROM total_balance) * 100, 9) AS top_10_holdings_percent
+SELECT ((SUM(balance) / (SELECT total FROM total_balance))) AS top_10_holdings_percent
 FROM top_addresses;
-
-

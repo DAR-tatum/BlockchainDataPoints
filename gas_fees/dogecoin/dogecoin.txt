@@ -1,0 +1,6 @@
+SELECT 
+   FORMAT_TIMESTAMP('%Y-%m-%d', block_timestamp) AS date,
+   ROUND((SUM(fee)/100000000), 6) as total_gas_fee
+FROM `bigquery-public-data.crypto_dogecoin.transactions`
+GROUP BY date
+ORDER BY date DESC;
