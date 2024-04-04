@@ -1,14 +1,18 @@
 WITH wallet_balances AS (
-  SELECT address, SUM(value) AS balance
-  FROM (
-    SELECT UNNEST(inputs.addresses) AS address, -value
-    FROM `bigquery-public-data.crypto_bitcoin.transactions`
-    UNION ALL
-    SELECT UNNEST(outputs.addresses) AS address, value
-    FROM `bigquery-public-data.crypto_bitcoin.transactions`
-  ) AS all_transactions
-  GROUP BY address
+   -- debits
+   SELECT 
+    FORMAT_TIMESTAMP('%Y-%m-%d', block_timestamp) AS date,
+    array_to_string(inputs.addresses, ",") AS address, -inputs.value AS value
+   FROM `bigquery-public-data.crypto_bitcoin.inputs` AS inputs
+   UNION ALL
+   -- credits
+   SELECT
+    FORMAT_TIMESTAMP('%Y-%m-%d', block_timestamp) AS date,
+    array_to_string(outputs.addresses, ",") AS address, outputs.value AS value
+   FROM `bigquery-public-data.crypto_bitcoin.outputs` AS outputs
 )
-SELECT COUNT(*) AS non_zero_wallets
+SELECT date, COUNT(DISTINCT address) AS non_zero_address_count
 FROM wallet_balances
-WHERE balance > 0;
+GROUP BY date
+HAVING SUM(value) > 0
+ORDER BY date DESC;

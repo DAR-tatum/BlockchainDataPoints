@@ -1,0 +1,12 @@
+-- Erroring
+
+WITH recievers AS ( 
+   SELECT 
+      FORMAT_TIMESTAMP('%Y-%m-%d', block_timestamp) AS date,
+      array_to_string(outputs.addresses, ",") AS address
+   FROM `bigquery-public-data.crypto_dogecoin.transactions` AS outputs
+)
+SELECT date, COUNT(DISTINCT address) AS unique_recievers
+FROM recievers
+GROUP BY date
+ORDER BY date DESC;
